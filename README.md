@@ -1,7 +1,7 @@
 # Secure-Weather-Analytics-Application
 This is a Responsive Web Application that retrieves weather data, processes using a custom Comfort Index.
 
-# Comfort Index Formula Explanation
+ ## Comfort Index Formula Explanation
 
 The Comfort Index Score is calculated using a cumulative scoring model that starts from zero and awards points based on how closely weather conditions fall within defined human comfort ranges.
 
