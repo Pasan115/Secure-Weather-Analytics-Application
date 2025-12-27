@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import CityCard from './CityCard';
 import '../styles.css';
 import { useAuth0 } from '@auth0/auth0-react';
@@ -29,6 +29,11 @@ export default function WeatherDashboard() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  // Sorting & filtering state
+  const [filterText, setFilterText] = useState('');
+  const [weatherFilter, setWeatherFilter] = useState('All');
+  const [sortField, setSortField] = useState('comfort');
+  const [sortOrder, setSortOrder] = useState('desc'); // 'asc' | 'desc'
 
   useEffect(() => {
     let mounted = true;
@@ -86,7 +91,7 @@ export default function WeatherDashboard() {
           return { ...item, main, weather, name, comfort };
         });
 
-        // sort by comfort desc
+        // sort by comfort desc initially
         augmented.sort((a, b) => (b.comfort ?? 0) - (a.comfort ?? 0));
         // add rank
         const withRank = augmented.map((c, i) => ({ ...c, rank: i + 1 }));
@@ -105,15 +110,76 @@ export default function WeatherDashboard() {
 
   // TopNav component handles header UI (login/logout, user display, refresh)
 
+  // Compute displayed list (filtering + sorting) with useMemo unconditionally
+  const displayedList = useMemo(() => {
+    const q = (filterText || '').trim().toLowerCase();
+    let list = Array.isArray(data) ? data.slice() : [];
+    if (q) {
+      list = list.filter(d => (d.name || '').toLowerCase().includes(q));
+    }
+    if (weatherFilter && weatherFilter !== 'All') {
+      list = list.filter(d => {
+        const w = (d.weather && d.weather[0] && (d.weather[0].main || d.weather[0].description)) || '';
+        return w.toLowerCase().includes(weatherFilter.toLowerCase());
+      });
+    }
+
+    const compare = (a, b) => {
+      const dir = sortOrder === 'asc' ? 1 : -1;
+      if (sortField === 'comfort') return dir * ((a.comfort ?? 0) - (b.comfort ?? 0));
+      if (sortField === 'temperature') return dir * (((a.main && a.main.temp) ?? 0) - ((b.main && b.main.temp) ?? 0));
+      if (sortField === 'humidity') return dir * (((a.main && a.main.humidity) ?? 0) - ((b.main && b.main.humidity) ?? 0));
+      if (sortField === 'name') return dir * ((a.name || '').localeCompare(b.name || ''));
+      return 0;
+    };
+
+    list.sort(compare);
+    return list.map((city, idx) => (
+      <CityCard key={city.id || city.cityId || idx} city={city} rank={city.rank} />
+    ));
+  }, [data, filterText, weatherFilter, sortField, sortOrder]);
   return (
     <>
     <div className='header-top'>
         <TopNav />
     </div>
     <div className="dashboard-root">
-        <div className='content-top'>
-        <p className="topnav-subtitle">Top 10 Comfort rankings for monitored cities</p>
-        <button className="topnav-btn topnav-refresh" onClick={() => window.location.reload()}>Refresh</button>
+        <div className='content-top' style={{ display: 'flex', alignItems: 'center', gap: 12, justifyContent: 'space-between', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+            <p className="topnav-subtitle" style={{ margin: 0 }}>Top 10 Comfort rankings for monitored cities</p>
+            <input
+              aria-label="Search city"
+              placeholder="Search city"
+              className="control-input"
+              value={filterText}
+              onChange={e => setFilterText(e.target.value)}
+              style={{ padding: '8px 10px', borderRadius: 8, border: '1px solid #e6eef0' }}
+            />
+
+            <select className="control-select" value={weatherFilter} onChange={e => setWeatherFilter(e.target.value)} style={{ padding: '8px 10px', borderRadius: 8 }}>
+              <option>All</option>
+              <option>Clear</option>
+              <option>Broken</option>
+              <option>Few</option>
+              <option>Scattered</option>
+              <option>Overcast</option>
+              <option>Haze</option>
+            </select>
+          </div>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <label style={{ fontSize: 13, color: '#445' }}>Sort:</label>
+            <select value={sortField} onChange={e => setSortField(e.target.value)} style={{ padding: '8px 10px', borderRadius: 8 }}>
+              <option value="comfort">Comfort</option>
+              <option value="temperature">Temperature</option>
+              <option value="humidity">Humidity</option>
+              <option value="name">Name</option>
+            </select>
+            <button className="control-btn" onClick={() => setSortOrder(prev => prev === 'asc' ? 'desc' : 'asc')} style={{ padding: '8px 12px', borderRadius: 8 }}>
+              {sortOrder === 'asc' ? 'Asc' : 'Desc'}
+            </button>
+            <button className="topnav-btn topnav-refresh" onClick={() => window.location.reload()}>Refresh</button>
+          </div>
         </div>
         
       {loading && <div className="loader">Loading weather data…</div>}
@@ -121,9 +187,7 @@ export default function WeatherDashboard() {
 
       {!loading && !error && (
         <div className="grid">
-          {data.map((city, idx) => (
-            <CityCard key={city.id || city.cityId || idx} city={city} rank={city.rank} />
-          ))}
+          {displayedList}
         </div>
       )}
 

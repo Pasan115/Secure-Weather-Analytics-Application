@@ -110,6 +110,35 @@ body, html, #root{
 
 .dash-footer{text-align:center;color:var(--muted);margin-top:20px;font-size:13px}
 
+
+.content-top { padding: 14px 8px; margin-bottom: 14px; }
+
+.control-input, .control-select, .control-btn {
+  background: #ffffff;
+  border: 1px solid #e6eef0;
+  padding: 8px 10px;
+  border-radius: 10px;
+  box-shadow: 0 6px 14px rgba(11,22,29,0.04);
+  font-size: 14px;
+  color: #08323a;
+}
+
+.control-input::placeholder { color: #9fb6b9; }
+
+.control-select { appearance: none; -webkit-appearance: none; background-image: linear-gradient(45deg, transparent 50%, #08323a 50%), linear-gradient(135deg, #08323a 50%, transparent 50%); background-position: calc(100% - 18px) calc(1em + 2px), calc(100% - 13px) calc(1em + 2px); background-size: 6px 6px, 6px 6px; background-repeat: no-repeat; padding-right: 34px; }
+
+.control-btn { background: linear-gradient(90deg,#e7f7f8,#dff4fb); border: 1px solid #d0eef0; cursor: pointer; }
+
+.control-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(11,22,29,0.06); }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+
+@media (max-width: 640px) {
+  .content-top { padding: 10px 6px; }
+  .control-input, .control-select { width: 100%; }
+  .control-btn { padding: 8px 10px; }
+}
+
 /* Responsive tweaks */
 @media (max-width:520px){
   .dashboard-root{margin:12px;padding:16px}
@@ -151,3 +180,38 @@ body, html, #root{
 
 /* Small utility */
 .muted{color:var(--muted)}
+
+/* Dark theme overrides when `theme-dark` is added to <html> (documentElement) */
+.theme-dark {
+  --bg-1: #041022;
+  --bg-2: #071833;
+  --card: #071b2a;
+  --accent-2: #5ab1ff;
+  --muted: #9fb6c0;
+  --text: #e6f7ff;
+  --soft: rgba(255,255,255,0.02);
+  --glass: rgba(255,255,255,0.03);
+}
+
+.theme-dark body, .theme-dark html, .theme-dark #root {
+  background: linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
+  color: var(--text);
+}
+
+.theme-dark .dashboard-root{
+  background: linear-gradient(180deg, rgba(6,23,36,0.6), rgba(4,18,30,0.6));
+  box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+.theme-dark .card{
+  background: linear-gradient(180deg, rgba(8,22,34,0.6), rgba(6,18,28,0.5));
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+.theme-dark .city-sub, .theme-dark .small, .theme-dark .dash-footer, .theme-dark .subtitle { color: var(--muted); }
+.theme-dark .rank-badge{ background: linear-gradient(90deg,#1f6fb6,#1776a6); color:#eaf6ff }
+.theme-dark .topnav-subtitle{ color: var(--muted); }
+.theme-dark .control-input, .theme-dark .control-select{ background: rgba(255,255,255,0.04); color:var(--text); border: 1px solid rgba(255,255,255,0.04); }
+.theme-dark .control-btn{ box-shadow: 0 8px 26px rgba(0,0,0,0.6); }
+.theme-dark .topnav-refresh{ box-shadow: 0 12px 30px rgba(0,0,0,0.5); }

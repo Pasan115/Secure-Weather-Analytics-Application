@@ -1,8 +1,24 @@
+.root-vars{ }
+
+:root{
+  --top-bg-1: linear-gradient(90deg, rgba(2,120,130,0.06), rgba(0,200,210,0.04));
+  --top-bg-2: linear-gradient(90deg, #d7eef6, #dbeeff);
+  --text-on-top: #052b2a;
+  --muted-top: rgba(5,43,42,0.7);
+}
+
+.theme-dark {
+  --top-bg-1: linear-gradient(90deg,#0b3a5a,#072b4a);
+  --top-bg-2: linear-gradient(90deg,#06263f,#042235);
+  --text-on-top: #eaf6ff;
+  --muted-top: rgba(234,246,255,0.8);
+}
+
 .topnav-header {
-  width: 97.4%;
-  background: linear-gradient(90deg, rgb(192, 215, 246) 0% rgb(162, 208, 247) 100%);
-  color: rgb(0, 0, 0);
-  box-shadow: 0 6px 18px rgba(2,24,40,0.18);
+  width: 100%;
+  background: var(--top-bg-2);
+  color: var(--text-on-top);
+  box-shadow: 0 6px 18px rgba(2,24,40,0.12);
   padding: 14px 20px;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
@@ -19,38 +35,23 @@
   display: flex;
   flex-direction: column;
 }
-.topnav-brand h1 {
-  margin: 0;
-  font-size: 30px;
-  letter-spacing: -0.2px;
-}
+.topnav-brand h1 { margin: 0; font-size: 20px; letter-spacing: -0.2px; }
+.topnav-subtitle{ margin:0; font-size:12px; color:var(--muted-top); }
 
-.topnav-actions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
+.topnav-actions { display: flex; align-items: center; gap: 12px; }
 
+.topnav-btn{ padding:8px 12px; border-radius:8px; cursor:pointer; border:none; }
+.topnav-login { background: linear-gradient(90deg,#7b61ff,#5ee7df); color: #072227; }
+.topnav-logout { background: #fff1f1; color: #08323a; border: 1px solid rgba(0,0,0,0.06); }
 
-.topnav-login {
-  background: linear-gradient(90deg,#7b61ff,#5ee7df);
-  color: #072227;
-}
+.topnav-user { display:flex; align-items:center; gap:10px; text-align:left; }
+.topnav-user .name { font-weight:700; }
+.topnav-user .email { font-size:12px; opacity:0.9; }
 
-.topnav-logout {
-  background: rgb(255, 147, 147);
-  color: #08323a;
-  border: 1px solid rgba(0,0,0,0.06);
-}
+.checking-auth{ color: var(--muted-top); font-size:13px; }
 
-.topnav-user {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-align: left;
-}
-.topnav-user .name { font-weight: 700; }
-.topnav-user .email { font-size: 12px; opacity: 0.9; }
+.theme-toggle{ border:none; background:transparent; font-size:18px; padding:6px 8px; cursor:pointer; color:var(--text-on-top); }
+.theme-toggle:hover{ transform:translateY(-2px); }
 
 @media (max-width: 640px) {
   .topnav-nav { flex-direction: column; align-items: flex-start; }

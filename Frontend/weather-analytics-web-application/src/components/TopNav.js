@@ -1,20 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import './topnav.css';
 
 export default function TopNav() {
   const { isLoading: authLoading, isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
+  const [isDark, setIsDark] = useState(() => {
+    try { return localStorage.getItem('theme') === 'dark'; } catch (e) { return false; }
+  });
+
+  useEffect(() => {
+    const cls = 'theme-dark';
+    if (isDark) {
+      document.documentElement.classList.add(cls);
+      try { localStorage.setItem('theme','dark'); } catch (e) {}
+    } else {
+      document.documentElement.classList.remove(cls);
+      try { localStorage.setItem('theme','light'); } catch (e) {}
+    }
+  }, [isDark]);
+
+  const toggleTheme = () => setIsDark(v => !v);
 
   return (
     <header className="topnav-header">
       <nav className="topnav-nav">
         <div className="topnav-brand">
           <h1>Weather Analytics</h1>
+          <p className="topnav-subtitle">Comfort rankings for your monitored cities</p>
         </div>
 
         <div className="topnav-actions">
+          <button className="theme-toggle" aria-label="Toggle theme" title="Toggle theme" onClick={toggleTheme}>
+            {isDark ? '☀︎' : '☾'}
+          </button>
+
           {authLoading ? (
-            <div style={{ color: 'rgba(255,255,255,0.9)', fontSize: 13 }}>Checking auth…</div>
+            <div className="checking-auth">Checking auth…</div>
           ) : isAuthenticated ? (
             <div className="topnav-user">
               <div>
