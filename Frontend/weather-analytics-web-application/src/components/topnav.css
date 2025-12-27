@@ -1,0 +1,59 @@
+.topnav-header {
+  width: 97.4%;
+  background: linear-gradient(90deg, rgb(192, 215, 246) 0% rgb(162, 208, 247) 100%);
+  color: rgb(0, 0, 0);
+  box-shadow: 0 6px 18px rgba(2,24,40,0.18);
+  padding: 14px 20px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.topnav-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.topnav-brand {
+  display: flex;
+  flex-direction: column;
+}
+.topnav-brand h1 {
+  margin: 0;
+  font-size: 30px;
+  letter-spacing: -0.2px;
+}
+
+.topnav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+
+.topnav-login {
+  background: linear-gradient(90deg,#7b61ff,#5ee7df);
+  color: #072227;
+}
+
+.topnav-logout {
+  background: rgb(255, 147, 147);
+  color: #08323a;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+.topnav-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+}
+.topnav-user .name { font-weight: 700; }
+.topnav-user .email { font-size: 12px; opacity: 0.9; }
+
+@media (max-width: 640px) {
+  .topnav-nav { flex-direction: column; align-items: flex-start; }
+  .topnav-actions { width: 100%; justify-content: space-between; }
+  .topnav-user { display: none; }
+}

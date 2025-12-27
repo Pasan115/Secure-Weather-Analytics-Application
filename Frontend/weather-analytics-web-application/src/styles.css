@@ -1,0 +1,153 @@
+:root{
+  /* Light blue professional palette */
+  --bg-1: #e6f3ff; /* very light blue */
+  --bg-2: #f8fbff; /* near white */
+  --card: #ffffff;
+  --accent-2: #2563eb; /* blue-600 */
+  --muted: #475569; /* slate-600 */
+  --text: #0f172a; /* dark text */
+  --soft: #f1f8ff; /* soft surface */
+  --glass: rgba(255,255,255,0.7);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+
+body, html, #root{
+  height:100%;
+  margin:0;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background: linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
+  color: var(--text);
+  -webkit-font-smoothing:antialiased;
+}
+
+.topnav-btn {
+  border: none;
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  box-shadow: 0 6px 14px rgba(2,24,40,0.12);
+}
+
+.topnav-subtitle {
+  margin: 0;
+  font-size: 22px;
+  text-decoration: underline;
+}
+
+.content-top{
+    display: flex;
+    margin-left: 15px;
+    flex: 1;
+}
+
+.topnav-refresh {
+    width: 100px;
+    height: 40px;
+    font-size: 15px;
+    margin-left: 600px;
+  background: rgb(141, 228, 255);
+  color: rgb(0, 0, 0);
+}
+
+
+.dashboard-root{
+  max-width:1200px;
+  margin:36px auto;
+  padding:28px;
+  border-radius:18px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(248,251,255,0.95));
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+  border: 1px solid rgba(37,99,235,0.06);
+}
+
+.dash-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+}
+.dash-header h1{margin:0;font-size:28px;font-weight:700}
+.subtitle{color:var(--muted);margin:6px 0 0}
+.header-actions .refresh{background:linear-gradient(90deg,var(--accent-1),var(--accent-2));border:none;padding:10px 14px;border-radius:12px;color:white;font-weight:700;cursor:pointer;box-shadow:0 4px 12px rgba(14,165,233,0.18)}
+
+.loader{padding:40px;text-align:center;color:var(--muted)}
+.error{padding:20px;background:rgba(255,50,50,0.06);color:#9b1c1c;border-radius:8px}
+
+.grid{
+  margin-top:22px;
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap:20px;
+}
+
+.card{
+  background: linear-gradient(180deg, var(--card), var(--soft));
+  border:1px solid rgba(37,99,235,0.06);
+  padding:16px;
+  border-radius:14px;
+  display:flex;
+  flex-direction:column;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+.card:hover{transform:translateY(-6px);box-shadow:0 18px 30px rgba(14,165,233,0.08)}
+.card-header{display:flex;justify-content:space-between;align-items:center}
+.city-name{margin:0;font-size:18px;font-weight:700}
+.city-sub{color:var(--muted);font-size:13px;margin-top:4px}
+.rank-badge{background:linear-gradient(90deg,var(--accent-2),var(--accent-1));padding:8px 12px;border-radius:999px;color:white;font-weight:800;font-size:14px}
+
+.card-body{display:flex;justify-content:space-between;align-items:center;padding:14px 0}
+.temp-block{display:flex;gap:14px;align-items:center}
+.weather-icon{width:68px;height:68px;border-radius:12px;background:linear-gradient(135deg,rgba(14,165,233,0.06),rgba(37,99,235,0.04));padding:8px}
+.temp{font-size:22px;font-weight:800}
+.small{color:var(--muted);font-size:12px}
+.score-block{text-align:right;min-width:110px}
+.score-label{font-size:12px;color:var(--muted);margin-bottom:6px}
+.score-value{font-size:20px;font-weight:800;color:var(--accent-2)}
+
+.card-footer{display:flex;justify-content:space-between;color:var(--muted);font-size:13px;padding-top:10px;border-top:1px solid rgba(37,99,235,0.03)}
+
+.dash-footer{text-align:center;color:var(--muted);margin-top:20px;font-size:13px}
+
+/* Responsive tweaks */
+@media (max-width:520px){
+  .dashboard-root{margin:12px;padding:16px}
+  .weather-icon{width:52px;height:52px}
+}
+
+/* Medium screens: reduce card width and spacing */
+@media (max-width:900px) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap:16px;
+  }
+  .dashboard-root { padding:20px; }
+  .dash-header h1 { font-size:22px; }
+}
+
+/* Small screens: single-column layout and stacked header */
+@media (max-width:520px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap:12px;
+  }
+  .dash-header{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:12px;
+  }
+  .header-actions{width:100%;display:flex;justify-content:flex-end}
+  .header-actions .refresh{width:120px}
+  .dash-header .subtitle{font-size:13px}
+  .card { padding:12px }
+}
+
+/* Make footer compact on very small devices */
+@media (max-width:360px){
+  .dash-footer{font-size:12px}
+  .header-actions .refresh{width:100px;padding:8px}
+}
+
+/* Small utility */
+.muted{color:var(--muted)}
