@@ -18,7 +18,7 @@ npm start
 ```bash
 cd Backend
 npm install
-node index.js    # or `npm start` if configured
+npm run dev
 ```
 
 - Environment variables (examples):
