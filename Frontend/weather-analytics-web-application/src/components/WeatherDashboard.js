@@ -166,7 +166,7 @@ export default function WeatherDashboard() {
               <option>Haze</option>
             </select>
 
-            <label style={{ fontSize: 13, color: '#445' }}>Sort:</label>
+            <label style={{ fontSize: 13, color: 'rgba(127, 127, 154, 1)' }}>Sort:</label>
             <select value={sortField} onChange={e => setSortField(e.target.value)} style={{ padding: '8px 10px', borderRadius: 8 }}>
               <option value="comfort">Comfort</option>
               <option value="temperature">Temperature</option>
