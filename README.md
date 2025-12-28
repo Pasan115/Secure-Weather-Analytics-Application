@@ -1,6 +1,7 @@
 # Secure-Weather-Analytics-Application
 This is a Responsive Web Application that retrieves weather data, processes using a custom Comfort Index.
 
+
 ### 1) Setup instructions
 
 - Prerequisites: Node.js 18+ and npm
@@ -32,8 +33,8 @@ The frontend displays a computed "Comfort Score" (0-100) per city derived from b
 
 - Base score: 100 - 3 * |temperature - 22°C|
 - Humidity adjustment:
-	- if humidity &gt; 60%: subtract (humidity - 60) * 0.6
-	- if humidity &lt; 40%: subtract (40 - humidity) * 0.4
+	- if humidity greater than 60%: subtract (humidity - 60) * 0.6
+	- if humidity less than 40%: subtract (40 - humidity) * 0.4
 - Weather condition penalties/bonuses:
 	- rain → -12
 	- snow → -18
@@ -70,3 +71,4 @@ These weights are intentionally simple and interpretable for a lightweight dashb
 - API rate limits: OpenWeatherMap key is subject to limits; heavy usage should use caching or a paid plan.
 - Single-region units: Temperatures are displayed from OpenWeatherMap units (Celsius by default) and unit conversions/localization are limited.
 - Security: Auth0 JWT validation is optional and depends on correct env config; ensure `AUTH0_AUDIENCE` and allowed callback URLs are set in Auth0 dashboard.
+
