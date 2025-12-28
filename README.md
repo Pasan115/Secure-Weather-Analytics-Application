@@ -1,5 +1,5 @@
 # Secure-Weather-Analytics-Application
-This is a Responsive Web Application that retrieves weather data, processes using a custom Comfort Index.
+Secure Weather Analytics is a secure, full‑stack web application that collects, visualizes, and analyzes city weather data. The project pairs a React single‑page frontend (components include `WeatherDashboard`, `CityCard`, and auth helpers such as `AuthButton` and `ProtectedRoute`) with a lightweight Node.js/Express backend that serves city data (for example, `cities.json`). The app computes a user‑friendly "Comfort Index", presents responsive dashboards and city cards, and uses simple in‑memory caching for efficiency — it is intentionally designed for easy extension to persistent storage, richer analytics, and production authentication.
 
 
 ### 1) Setup instructions
