@@ -1,8 +1,8 @@
 :root{
   /* Light blue professional palette */
   --bg-1: #e6f3ff; /* very light blue */
-  --bg-2: #f8fbff; /* near white */
-  --card: #ffffff;
+  --bg-2: #cfe4ff; /* near white */
+  --card: #e7f1ff;
   --accent-2: #2563eb; /* blue-600 */
   --muted: #475569; /* slate-600 */
   --text: #0f172a; /* dark text */
@@ -17,8 +17,10 @@ body, html, #root{
   margin:0;
   font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
   background: linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
   color: var(--text);
-  -webkit-font-smoothing:antialiased;
 }
 
 .topnav-btn {
@@ -33,7 +35,6 @@ body, html, #root{
 .topnav-subtitle {
   margin: 0;
   font-size: 22px;
-  text-decoration: underline;
 }
 
 .content-top{
@@ -46,7 +47,7 @@ body, html, #root{
     width: 100px;
     height: 40px;
     font-size: 15px;
-    margin-left: 600px;
+    margin-left: 380px;
   background: rgb(141, 228, 255);
   color: rgb(0, 0, 0);
 }
@@ -57,7 +58,7 @@ body, html, #root{
   margin:36px auto;
   padding:28px;
   border-radius:18px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(248,251,255,0.95));
+  background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(248,251,255,0.98));
   box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
   border: 1px solid rgba(37,99,235,0.06);
 }
@@ -95,7 +96,7 @@ body, html, #root{
 .card-header{display:flex;justify-content:space-between;align-items:center}
 .city-name{margin:0;font-size:18px;font-weight:700}
 .city-sub{color:var(--muted);font-size:13px;margin-top:4px}
-.rank-badge{background:linear-gradient(90deg,var(--accent-2),var(--accent-1));padding:8px 12px;border-radius:999px;color:white;font-weight:800;font-size:14px}
+.rank-badge{background:linear-gradient(90deg,#1f6fb6,#1776a6);padding:8px 12px;border-radius:999px;color:rgb(255, 255, 255);font-weight:800;font-size:14px}
 
 .card-body{display:flex;justify-content:space-between;align-items:center;padding:14px 0}
 .temp-block{display:flex;gap:14px;align-items:center}
@@ -111,19 +112,21 @@ body, html, #root{
 .dash-footer{text-align:center;color:var(--muted);margin-top:20px;font-size:13px}
 
 
-.content-top { padding: 14px 8px; margin-bottom: 14px; }
+.content-top { padding: 14px 18px; margin-bottom: 14px; }
 
 .control-input, .control-select, .control-btn {
   background: #ffffff;
   border: 1px solid #e6eef0;
-  padding: 8px 10px;
+  padding: 18px 20px;
   border-radius: 10px;
   box-shadow: 0 6px 14px rgba(11,22,29,0.04);
   font-size: 14px;
   color: #08323a;
 }
 
-.control-input::placeholder { color: #9fb6b9; }
+.control-input { width: 300px; }
+
+.control-input::placeholder { color: #9fb6b9 }
 
 .control-select { appearance: none; -webkit-appearance: none; background-image: linear-gradient(45deg, transparent 50%, #08323a 50%), linear-gradient(135deg, #08323a 50%, transparent 50%); background-position: calc(100% - 18px) calc(1em + 2px), calc(100% - 13px) calc(1em + 2px); background-size: 6px 6px, 6px 6px; background-repeat: no-repeat; padding-right: 34px; }
 
@@ -184,8 +187,8 @@ body, html, #root{
 /* Dark theme overrides when `theme-dark` is added to <html> (documentElement) */
 .theme-dark {
   --bg-1: #041022;
-  --bg-2: #071833;
-  --card: #071b2a;
+  --bg-2: #0e2a58;
+  --card: #1b3b53;
   --accent-2: #5ab1ff;
   --muted: #9fb6c0;
   --text: #e6f7ff;
@@ -196,6 +199,9 @@ body, html, #root{
 .theme-dark body, .theme-dark html, .theme-dark #root {
   background: linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
   color: var(--text);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 .theme-dark .dashboard-root{
@@ -205,7 +211,7 @@ body, html, #root{
 }
 
 .theme-dark .card{
-  background: linear-gradient(180deg, rgba(8,22,34,0.6), rgba(6,18,28,0.5));
+  background: linear-gradient(180deg, rgba(15, 37, 56, 0.6), rgba(6,18,28,0.5));
   border: 1px solid rgba(255,255,255,0.03);
 }
 
@@ -215,3 +221,4 @@ body, html, #root{
 .theme-dark .control-input, .theme-dark .control-select{ background: rgba(255,255,255,0.04); color:var(--text); border: 1px solid rgba(255,255,255,0.04); }
 .theme-dark .control-btn{ box-shadow: 0 8px 26px rgba(0,0,0,0.6); }
 .theme-dark .topnav-refresh{ box-shadow: 0 12px 30px rgba(0,0,0,0.5); }
+

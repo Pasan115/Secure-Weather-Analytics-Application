@@ -145,8 +145,8 @@ export default function WeatherDashboard() {
     </div>
     <div className="dashboard-root">
         <div className='content-top' style={{ display: 'flex', alignItems: 'center', gap: 12, justifyContent: 'space-between', flexWrap: 'wrap' }}>
+            <p className="topnav-subtitle" style={{ margin: 0 }}>Top 10 Comfort rankings for monitored cities</p><br/>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
-            <p className="topnav-subtitle" style={{ margin: 0 }}>Top 10 Comfort rankings for monitored cities</p>
             <input
               aria-label="Search city"
               placeholder="Search city"
@@ -165,9 +165,7 @@ export default function WeatherDashboard() {
               <option>Overcast</option>
               <option>Haze</option>
             </select>
-          </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             <label style={{ fontSize: 13, color: '#445' }}>Sort:</label>
             <select value={sortField} onChange={e => setSortField(e.target.value)} style={{ padding: '8px 10px', borderRadius: 8 }}>
               <option value="comfort">Comfort</option>
@@ -191,8 +189,9 @@ export default function WeatherDashboard() {
         </div>
       )}
 
-      <footer className="dash-footer">Data provided by OpenWeatherMap</footer>
+      <footer className="dash-footer">Weather Analytics 2025</footer>
     </div>
+    <br/>
     </>
   );
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import './topnav.css';
+import logo from '../Images/weather-analytics-logo-transparent.png';
 
 export default function TopNav() {
   const { isLoading: authLoading, isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
@@ -25,8 +26,8 @@ export default function TopNav() {
     <header className="topnav-header">
       <nav className="topnav-nav">
         <div className="topnav-brand">
-          <h1>Weather Analytics</h1>
-          <p className="topnav-subtitle">Comfort rankings for your monitored cities</p>
+          <img src={logo} alt="logo" className="topnav-logo" />
+            <p>Weather Analytics Dashboard</p>
         </div>
 
         <div className="topnav-actions">
